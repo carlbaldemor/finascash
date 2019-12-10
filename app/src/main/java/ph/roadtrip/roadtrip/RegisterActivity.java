@@ -3,6 +3,7 @@ package ph.roadtrip.roadtrip;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -31,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_BIRTH_DATE = "dateOfBirth";
     private static final String KEY_ID_NUMBER = "identificationNumber";
+    private static final String KEY_BC_ADDRESS = "bcAddress";
 
     private String username, password, firstName, lastName, contactNum, address, emailAddress, dateOfBirth, confirmPassword, identificationNumber;
     private EditText etUsername, etPassword, etFirstName, etLastName, etContactNum, etAddress, etEmailAddress, etConfirmPassword;
@@ -39,6 +41,9 @@ public class RegisterActivity extends AppCompatActivity {
     private String registerURL;
     private SessionHandler session;
     private int userID;
+    String dataAddress;
+
+    blockChainWallet bc = new blockChainWallet();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,16 @@ public class RegisterActivity extends AppCompatActivity {
                 dateOfBirth = String.valueOf(year) + "-" + String.valueOf(month) + "-" + String.valueOf(day);
 
                 if(validateInputs()){
+                    try {
+                        bc.blockchainVolley(RegisterActivity.this);
+                        JSONObject jsonobject = new JSONObject(bc.getResponseData());
+                        JSONObject data = jsonobject.getJSONObject("data");
+                        dataAddress = data.getString("address");
+                        Log.d("JSON Response", dataAddress);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     register();
                 }
             }
@@ -110,6 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
             request.put(KEY_BIRTH_DATE, dateOfBirth);
             request.put(KEY_ADDRESS, address);
             request.put(KEY_ID_NUMBER, identificationNumber);
+            request.put(KEY_BC_ADDRESS, dataAddress);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -127,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 session.loginUser(userID,username,
                                         firstName, lastName,
                                         emailAddress,
-                                        contactNum, address, identificationNumber);
+                                        contactNum, address, identificationNumber, dataAddress);
 
                                 loadDashboard();
                                 Toast.makeText(getApplicationContext(),

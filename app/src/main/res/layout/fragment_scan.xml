@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgpurple"
+    tools:context=".DashboardActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/whiteradius"
+        android:layout_marginTop="50dp"
+        android:elevation="3dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgSend"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/send"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEND"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:paddingTop="10dp"
+            android:textColor="#20639B"
+            android:id="@+id/tvSend"/>
+
+        <ImageView
+            android:id="@+id/imgReceive"
+            android:layout_marginTop="20dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/receive"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RECEIVE"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:paddingTop="10dp"
+            android:textColor="#20639B"
+            android:id="@+id/tvReceive"/>
+
+
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

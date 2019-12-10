@@ -13,8 +13,18 @@ public class User {
     int isVerified;
     int userID;
 
+    String bcAddress;
+
     String identificationNumber;
 
+
+    public String getBcAddress() {
+        return bcAddress;
+    }
+
+    public void setBcAddress(String bcAddress) {
+        this.bcAddress = bcAddress;
+    }
 
     public String getIdentificationNumber() {
         return identificationNumber;

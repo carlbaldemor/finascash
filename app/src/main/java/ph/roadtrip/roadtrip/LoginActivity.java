@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String KEY_USER_ID = "userID";
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_ID_NUM = "identificationNumber";
+    private static final String KEY_BC_ADDRESS = "bcAddress";
 
     private EditText etUsername, etPassword;
     private Button btnLogin, btnRegister;
@@ -118,7 +119,8 @@ public class LoginActivity extends AppCompatActivity {
                         session.loginUser(response.getInt(KEY_USER_ID),username,
                                 response.getString(KEY_FIRST_NAME), response.getString(KEY_LAST_NAME),
                                 response.getString(KEY_EMAIL_ADDRESS),
-                                response.getString(KEY_PHONE_NUMBER), response.getString(KEY_ADDRESS), response.getString(KEY_ID_NUM));
+                                response.getString(KEY_PHONE_NUMBER), response.getString(KEY_ADDRESS), response.getString(KEY_ID_NUM), response.getString(KEY_BC_ADDRESS));
+
 
                         //Load dashboard depending on user type
                         loadDashboard();

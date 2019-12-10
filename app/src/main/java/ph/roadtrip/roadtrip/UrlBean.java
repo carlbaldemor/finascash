@@ -8,12 +8,22 @@ public class UrlBean {
 
     private String registerURL = ROOT + "register.php";
 
+    private String scanQRSend = ROOT + "scan_qr_receive.php?userID=";
+
 
     /**
      *
      * GETTERS AND SETTERS
      *
      */
+
+    public String getScanQRSend() {
+        return scanQRSend;
+    }
+
+    public void setScanQRSend(String scanQRSend) {
+        this.scanQRSend = scanQRSend;
+    }
 
     public String getRegisterURL() {
         return registerURL;
