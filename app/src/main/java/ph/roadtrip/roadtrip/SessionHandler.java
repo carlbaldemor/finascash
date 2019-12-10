@@ -21,6 +21,7 @@ public class SessionHandler {
     private static final String KEY_MOBILE_NUMBER = "ContactNum";
     private static final String KEY_EMPTY = "";
     private static final String KEY_USER_ID = "userID";
+    private static final String KEY_ID_NUM = "identificationNumber";
     //BOOKING DETAILS
     private static final String KEY_ADDRESS = "Address";
 
@@ -43,7 +44,7 @@ public class SessionHandler {
      *
      */
     public void loginUser(int userID, String username, String FirstName, String LastName,
-                          String EmailAddress, String ContactNum, String Address) {
+                          String EmailAddress, String ContactNum, String Address, String identificationNumber) {
         mEditor.putInt(KEY_USER_ID, userID);
         mEditor.putString(KEY_USERNAME, username);
         mEditor.putString(KEY_FIRST_NAME, FirstName);
@@ -51,6 +52,7 @@ public class SessionHandler {
         mEditor.putString(KEY_EMAIL, EmailAddress);
         mEditor.putString(KEY_MOBILE_NUMBER, ContactNum);
         mEditor.putString(KEY_ADDRESS, Address);
+        mEditor.putString(KEY_ID_NUM, identificationNumber);
         Date date = new Date();
 
         //Set user session for next 7 days
@@ -102,6 +104,7 @@ public class SessionHandler {
         user.setContactNum(mPreferences.getString(KEY_MOBILE_NUMBER, KEY_EMPTY));
         user.setUserID(mPreferences.getInt(KEY_USER_ID, 0));
         user.setSessionExpiryDate(new Date(mPreferences.getLong(KEY_EXPIRES, 0)));
+        user.setIdentificationNumber(mPreferences.getString(KEY_ID_NUM, KEY_EMPTY));
 
 
         return user;

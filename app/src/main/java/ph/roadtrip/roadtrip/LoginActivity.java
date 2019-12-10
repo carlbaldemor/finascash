@@ -33,22 +33,29 @@ public class LoginActivity extends AppCompatActivity {
     private static final String KEY_PASSWORD = "Password";
     private static final String KEY_FIRST_NAME = "FirstName";
     private static final String KEY_LAST_NAME = "LastName";
-    private static final String KEY_CONTACT_NUM = "ContactNum";
+    private static final String KEY_PHONE_NUMBER = "phoneNumber";
     private static final String KEY_ADDRESS = "Address";
     private static final String KEY_EMAIL_ADDRESS = "EmailAddress";
     private static final String KEY_STATUS = "status1";
     private static final String KEY_USER_ID = "userID";
     private static final String KEY_MESSAGE = "message";
+    private static final String KEY_ID_NUM = "identificationNumber";
 
     private EditText etUsername, etPassword;
-    private Button btnLogin;
+    private Button btnLogin, btnRegister;
     private String username, password, loginURL;
     private SessionHandler session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        session = new SessionHandler(getApplicationContext());
+        if (session.isLoggedIn()) {
+            loadDashboard();
+        }
         setContentView(R.layout.activity_login);
+
+
 
         UrlBean url = new UrlBean();
         loginURL = url.getLoginURL();
@@ -56,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        btnRegister = findViewById(R.id.btnRegister);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +76,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent load = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(load);
+                finish();
+            }
+        });
+
+
+
+    }
+
+    public void loadDashboard(){
+        Intent load = new Intent(getApplicationContext(), DashboardActivity.class);
+        startActivity(load);
+        finish();
     }
 
     public void login(){
@@ -93,12 +118,10 @@ public class LoginActivity extends AppCompatActivity {
                         session.loginUser(response.getInt(KEY_USER_ID),username,
                                 response.getString(KEY_FIRST_NAME), response.getString(KEY_LAST_NAME),
                                 response.getString(KEY_EMAIL_ADDRESS),
-                                response.getString(KEY_CONTACT_NUM), response.getString(KEY_ADDRESS));
+                                response.getString(KEY_PHONE_NUMBER), response.getString(KEY_ADDRESS), response.getString(KEY_ID_NUM));
 
                         //Load dashboard depending on user type
-                        Intent load = new Intent(getApplicationContext(), DashboardActivity.class);
-                        startActivity(load);
-                        finish();
+                        loadDashboard();
 
 
 

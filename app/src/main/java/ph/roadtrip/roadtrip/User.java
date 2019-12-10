@@ -13,7 +13,16 @@ public class User {
     int isVerified;
     int userID;
 
+    String identificationNumber;
 
+
+    public String getIdentificationNumber() {
+        return identificationNumber;
+    }
+
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
+    }
 
     public String getUsername() {
         return Username;

@@ -6,12 +6,22 @@ public class UrlBean {
 
     private String loginURL = ROOT + "login.php";
 
+    private String registerURL = ROOT + "register.php";
+
 
     /**
      *
      * GETTERS AND SETTERS
      *
      */
+
+    public String getRegisterURL() {
+        return registerURL;
+    }
+
+    public void setRegisterURL(String registerURL) {
+        this.registerURL = registerURL;
+    }
 
     public String getLoginURL() {
         return loginURL;
